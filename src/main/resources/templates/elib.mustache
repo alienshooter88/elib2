@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Elib</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript" src="/script/compare.js"></script>
+    <script type="text/javascript" src="/script/filter.js" defer></script>
+    <script type="text/javascript" src="/script/selectall.js"></script>
+</head>
+<body onload="init()">
+<div class="main">
+    <div>
+
+        <form action="/getdata" method="post">
+            <div><input class="button" type="submit" value="Собрать данные"/></div>
+        </form>
+        <div><input class="compare-1" id="compare-1" type="button" value="Совпадение" onclick="filter(this)"/></div>
+        <div><input class="compare-2" id="compare-2" type="button" value="Нет совпадения" onclick="filter(this)"/></div>
+        <div><input class="compare-3" id="compare-3" type="button" value="Автор не найден" onclick="filter(this)"/></div>
+        <div><input class="all" id="all" type="button" value="Все" onclick="filter(this)"/></div>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Номер в базе</td>
+                <td>Идентификатор</td>
+                <td>Найдено</td>
+                <td>Совпадение</td>
+                <td><input type="checkbox"  onclick="toggle(this)"/>Выделить все</td>
+            </tr>
+            {{#works}}
+                <tr>
+                    <td name="{{id}}">{{id}}</td>
+                    <td>{{num}}</td>
+                    <td>{{organization}}</td>
+                    <td>{{{works}}}</td>
+                    <td name="compare-{{compare}}">{{compare}}</td>
+                    <td><input type="checkbox" name="foo"/></td>
+                </tr>
+            {{/works}}
+        </table>
+
+        <form action="/run" method="post">
+            <textarea id="textarea" name="textarea" rows="10" cols="60"></textarea>
+            <input class="button" type="submit" value="Выполнить"/>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
